@@ -3,15 +3,10 @@ import {
     Link
 } from "react-router-dom";
 import './Header.css'
-import AllFilms from "../AllFilms/AllFilms";
-import {useEffect, useState} from "react";
-import {getBySearch} from "../../services/api";
+
 
 export default function Header({searchInput, setSearchInput, fetchSearchFilm}) {
-    // let [searchFilm, setSearchFilm] = useState();
-    // useEffect(() => {
-    //     getBySearch().then(value => setSearchFilm(value.data))
-    // }, [])
+
 
     return (
         <Router>
