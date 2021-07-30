@@ -7,15 +7,11 @@ import AllFilms from "../AllFilms/AllFilms";
 import {useEffect, useState} from "react";
 import {getBySearch} from "../../services/api";
 
-export default function Header() {
-    let [searchFilm, setSearchFilm] = useState();
-    useEffect(() => {
-        getBySearch().then(value => setSearchFilm(value.data))
-    }, [])
-
-    function search() {
-
-    }
+export default function Header({searchInput, setSearchInput, fetchSearchFilm}) {
+    // let [searchFilm, setSearchFilm] = useState();
+    // useEffect(() => {
+    //     getBySearch().then(value => setSearchFilm(value.data))
+    // }, [])
 
     return (
         <Router>
@@ -23,8 +19,7 @@ export default function Header() {
                 {
                     <nav className="navbar navbar-expand-lg navbar-light bg-light">
                         <div className="container-fluid">
-                            <Link to={'/'} className="navbar-brand" href="#"
-                                  render={() => <AllFilms/>}>SweetMovie</Link>
+                            <Link to={'/'} className="navbar-brand" href="#">SweetMovie</Link>
                             <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                                     aria-expanded="false" aria-label="Toggle navigation">
@@ -37,9 +32,12 @@ export default function Header() {
                                     </li>
                                 </ul>
                                 <form className="d-flex">
-                                    <input className="form-control me-2" type="search" placeholder="Search"
-                                           aria-label="Search"/>
-                                    <button onClick={search()} className="btn btn-outline-success"
+                                    <input value={searchInput} className="form-control me-2" type="search"
+                                           placeholder="Search"
+                                           aria-label="Search"
+                                           onChange={(event) => setSearchInput(event.target.value)}/>
+                                    <button onClick={(event) => fetchSearchFilm(event)}
+                                            className="btn btn-outline-success"
                                             type="submit">Search
                                     </button>
                                 </form>
